@@ -11,25 +11,25 @@ snake.penup()
 move=0
 snake_length=3
 
-def go_up():
+def go_up(move,snake_length):
     snake.setheading(90)
     snake.forward(20)
     create_tail(move,snake_length)
     
 
-def go_down():
+def go_down(move,snake_length):
     snake.setheading(270)
     snake.forward(20)
     create_tail(move,snake_length)
    
 
-def go_left():
+def go_left(move,snake_length):
     snake.setheading(180)
     snake.forward(20)
     create_tail(move,snake_length)
     
 
-def go_right():
+def go_right(move,snake_length):
     snake.setheading(0)
     snake.forward(20)
     create_tail(move,snake_length)
