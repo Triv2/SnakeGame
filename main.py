@@ -52,9 +52,10 @@ def create_tail(move,snake_length):
 screen.listen()
 
 screen.onkey(go_up, "Up")
-screen.onkey(go_down, "Down")
-screen.onkey(go_left, "Left")
-screen.onkey(go_right, "Right")
+screen.onkey(go_down(move,snake_length), "Down")
+screen.onkey(go_left(move,snake_length), "Left")
+screen.onkey(go_right(move,snake_length), "Right")
+
 
 screen.exitonclick()
 
