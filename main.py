@@ -9,7 +9,7 @@ snake.shape("square")
   # snake.shapesize(stretch_wid=1, stretch_len=3)
 snake.penup()
 move=0
-snake_length=10
+snake_length=3
 
 def go_up():
     snake.setheading(90)
@@ -33,13 +33,21 @@ def go_right():
     snake.setheading(0)
     snake.forward(20)
     create_tail(move,snake_length)
+    
+
       
 def create_tail(move,snake_length):
-  move+=1
-  if move>=snake_length:
-    snake.clear()
-  else:
+  # next_snake=snake.clone()
+  # current_position=snake.pos()
+  # next_snake.goto(current_position)
+  print(f"move: {move}")
+  if move<=snake_length:
+    move+=1
     snake.stamp()
+  else:
+    move=0
+    snake.clearstamps(snake_length)
+  
     
 screen.listen()
 
