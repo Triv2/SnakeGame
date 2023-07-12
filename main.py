@@ -10,6 +10,7 @@ snake.shape("square")
 snake.penup()
 move=0
 snake_length=3
+snakes=[]
 
 def go_up():
     snake.setheading(90)
@@ -35,13 +36,22 @@ def go_right():
     
 
       
-def add_segment(snake_length):
-  for i in snake_length:
+def add_segment(snake_length,snakes):
+  for i in range(snake_length):
     next_snake=snake.clone()
     current_position=snake.pos()
     next_snake.goto(current_position)
+    snakes.append(next_snake)
+
+def update_segments(snakes):
+  for segment in snakes:
+    segment.goto(snake.pos())
+
+def update_positions(snakes):
+  main_position=snake.pos()
   
   
+add_segment(snake_length)
     
 screen.listen()
 
