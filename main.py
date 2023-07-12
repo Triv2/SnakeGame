@@ -11,50 +11,44 @@ snake.penup()
 move=0
 snake_length=3
 
-def go_up(move,snake_length):
+def go_up():
     snake.setheading(90)
     snake.forward(20)
-    create_tail(move,snake_length)
+    
     
 
-def go_down(move,snake_length):
+def go_down():
     snake.setheading(270)
     snake.forward(20)
-    create_tail(move,snake_length)
+    
    
 
-def go_left(move,snake_length):
+def go_left():
     snake.setheading(180)
     snake.forward(20)
-    create_tail(move,snake_length)
     
 
-def go_right(move,snake_length):
+def go_right():
     snake.setheading(0)
     snake.forward(20)
-    create_tail(move,snake_length)
+    
     
 
       
-def create_tail(move,snake_length):
-  # next_snake=snake.clone()
-  # current_position=snake.pos()
-  # next_snake.goto(current_position)
-  print(f"move: {move}")
-  if move<=snake_length:
-    move+=1
-    snake.stamp()
-  else:
-    move=0
-    snake.clearstamps(snake_length)
+def add_segment(snake_length):
+  for i in snake_length:
+    next_snake=snake.clone()
+    current_position=snake.pos()
+    next_snake.goto(current_position)
+  
   
     
 screen.listen()
 
 screen.onkey(go_up, "Up")
-screen.onkey(go_down(move,snake_length), "Down")
-screen.onkey(go_left(move,snake_length), "Left")
-screen.onkey(go_right(move,snake_length), "Right")
+screen.onkey(go_down, "Down")
+screen.onkey(go_left, "Left")
+screen.onkey(go_right, "Right")
 
 
 screen.exitonclick()
