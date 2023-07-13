@@ -1,4 +1,4 @@
-from turtle import Turtle, Screen
+from turtle import Turtle, Screen, time
 
 #Global Variables
 
@@ -8,68 +8,62 @@ snake = Turtle()
 snake.shape("square")
 snake.penup()
 move=0
-snake_length=3
-snake_moves=[]
+
+starting_positions=[(0,0),(-20,0),(-40,0)]
 snakes=[]
+snake_moves=[]
 
 #Controls for movement.
 
 def go_up():
-    save_moves(snake,snake_moves)
-    snake.setheading(90)
-    snake.forward(20)
-    update_snakes(snake_moves,snakes)
-    
-    
+  
+  snake.setheading(90)
+  snake.forward(20)  
 
 def go_down():
-    save_moves(snake,snake_moves)
-    snake.setheading(270)
-    snake.forward(20)
-    update_snakes(snake_moves,snakes)
-    
-   
+  
+  snake.setheading(270)
+  snake.forward(20)
 
 def go_left():
-    save_moves(snake,snake_moves)
-    snake.setheading(180)
-    snake.forward(20)
-    update_snakes(snake_moves,snakes)
+  
+  snake.setheading(180)
+  snake.forward(20)
 
 def go_right():
-    save_moves(snake,snake_moves)
-    snake.setheading(0)
-    snake.forward(20)
-    update_snakes(snake_moves,snakes)
+  
+  snake.setheading(0)
+  snake.forward(20)
+
     
     
 # Functions to control the snake.
-      
-def add_segment(snakes):
-    next_snake=snake.clone()
-    current_position=snake.pos()
-    next_snake.goto(current_position)
+
+def init_snake(starting_positions):
+  for position in starting_positions:
+    next_snake=Turtle()
+    next_snake.penup()
+    next_snake.goto(position)
+    next_snake.shape("square")
     snakes.append(next_snake)
 
 
-
-def update_snakes(snake_moves,snakes):
-  if len(snake_moves)>snake_length:
-    del snake_moves[0]
-  else:
-    add_segment(snakes)
-  
-
-def save_moves(snake,snake_moves):
-  current_x=snake.xcor()
-  current_y=snake.ycor()
-  current_position=(current_x, current_y)
-  snake_moves.append(current_position)
-
-
   
   
+init_snake(starting_positions)
 
+game_is_on=True
+while game_is_on:
+  length=len(snakes)
+  screen.update()
+  time.sleep(0.1)
+  for seg in range(length-1,0,-1):
+    new_x=snakes[seg-1].xcor()
+    new_y=snakes[seg-1].ycor()
+    snakes[seg].goto(new_x,new_y)
+  snakes[0].forward(20)
+  snakes[0].left(90)
+    
     
 screen.listen()
 
